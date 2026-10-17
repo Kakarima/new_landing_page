@@ -1,0 +1,2 @@
+Ici, vos images : le user flow (PNG) et, si vous en avez ajouté une, votre capture d'inspiration.
+Le kit téléchargé sur Master Prompt IQ les range déjà ici. Claude les regarde avant de construire.
