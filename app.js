@@ -25,7 +25,7 @@
   ];
 
   var state = load();
-  var view = { current: 'home', history: [], pending: null, month: null, date: null, time: null };
+  var view = { current: 'home', history: [], month: null, date: null, time: null };
 
   function load() {
     try {
@@ -42,7 +42,6 @@
     var past = new Date(); past.setDate(past.getDate() - 8);
     var now = Date.now();
     return {
-      session: false,
       user: { name: 'Camille', email: 'camille.durand@entreprise.fr', company: 'Groupe Énergie Nord', calendly: '' },
       bookings: [
         { id: uid(), date: key(next), time: '14:00', topic: 'agile', name: 'Camille Durand', email: 'camille.durand@entreprise.fr', note: 'Cadrer l\'automatisation de nos spécifications.', status: 'confirmé' },
@@ -50,8 +49,7 @@
       ],
       activity: [
         { t: now - 1000 * 60 * 60 * 26, text: 'Rendez-vous de cadrage agile confirmé avec succès' },
-        { t: now - 1000 * 60 * 60 * 24 * 8, text: 'Appel gratuit de 30 minutes effectué' },
-        { t: now - 1000 * 60 * 60 * 24 * 9, text: 'Compte créé' }
+        { t: now - 1000 * 60 * 60 * 24 * 8, text: 'Appel gratuit de 30 minutes effectué' }
       ]
     };
   }
@@ -78,7 +76,6 @@
     return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' });
   }
   function validEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
-  function isLoggedIn() { return !!state.session; }
   function log(text) { state.activity.unshift({ t: Date.now(), text: text }); state.activity = state.activity.slice(0, 30); }
 
   var toastTimer;
@@ -92,11 +89,8 @@
   function setError(id, msg) { $(id).textContent = msg || ''; }
 
   /* ---------- Navigation entre écrans ---------- */
-  var PRIVATE = { dashboard: 1, booking: 1, settings: 1 };
-
   function go(name, opts) {
     opts = opts || {};
-    if (PRIVATE[name] && !isLoggedIn()) { view.pending = view.pending || { screen: name }; name = 'login'; }
     if (!opts.back && view.current !== name) view.history.push(view.current);
     view.current = name;
     var screens = document.querySelectorAll('.screen');
@@ -108,23 +102,12 @@
     window.scrollTo(0, 0);
   }
   function back() {
-    var prev = view.history.pop();
-    if (!prev || (PRIVATE[prev] && !isLoggedIn())) prev = isLoggedIn() ? 'dashboard' : 'home';
+    var prev = view.history.pop() || 'home';
     go(prev, { back: true });
   }
   function renderNav() {
-    var inn = isLoggedIn();
-    $('nav-out').classList.toggle('hidden', inn);
-    $('nav-in').classList.toggle('hidden', !inn);
-    $('nav-avatar').textContent = (state.user.name || 'K').charAt(0).toUpperCase();
     var links = document.querySelectorAll('[data-nav]');
     for (var i = 0; i < links.length; i++) links[i].classList.toggle('active', links[i].getAttribute('data-nav') === view.current);
-  }
-  function afterLogin() {
-    var p = view.pending; view.pending = null;
-    view.history = [];
-    if (p && p.screen === 'booking') { openBooking(p.topic); return; }
-    go(p && p.screen ? p.screen : 'dashboard');
   }
 
   /* ---------- Accueil : formules ---------- */
@@ -148,7 +131,7 @@
   }
   function renderDashboard() {
     var u = state.user, up = upcoming();
-    $('dash-title').textContent = 'Bonjour ' + (u.name || '') + ' 👋';
+    $('dash-title').textContent = 'Mes rendez-vous';
     var minutes = up.reduce(function (s, b) { return s + (TOPICS[b.topic] ? TOPICS[b.topic].min : 30); }, 0);
     var hours = minutes / 60;
     var nextTxt = up.length ? fmtLong(up[0].date) + ' · ' + up[0].time.replace(':', ' h ') : 'Aucun';
@@ -182,8 +165,7 @@
     $('pf-email').value = u.email || '';
     $('pf-company').value = u.company || '';
     $('pf-calendly').value = u.calendly || '';
-    $('pw-old').value = ''; $('pw-new').value = '';
-    setError('pf-error'); setError('pw-error');
+    setError('pf-error');
   }
 
   /* ---------- Prise de rendez-vous ---------- */
@@ -219,8 +201,9 @@
     }).join('');
     $('bk-title').textContent = TOPICS[view.topic].label;
     $('bk-duration').textContent = TOPICS[view.topic].min + ' min';
-    $('bk-name').value = $('bk-name').value || ((state.user.name || '') + (state.user.lastName ? ' ' + state.user.lastName : ''));
-    $('bk-email').value = $('bk-email').value || state.user.email || '';
+    var contact = state.contact || {};
+    $('bk-name').value = $('bk-name').value || contact.name || '';
+    $('bk-email').value = $('bk-email').value || contact.email || '';
     setError('bk-error');
 
     renderCalendar();
@@ -276,9 +259,10 @@
     if (daySlots(view.date).indexOf(view.time) === -1) { setError('bk-error', 'Ce créneau vient d\'être pris, choisissez-en un autre.'); renderCalendar(); renderSlots(); return; }
     var b = { id: uid(), date: view.date, time: view.time, topic: view.topic, name: name, email: email, note: $('bk-note').value.trim(), status: 'confirmé' };
     state.bookings.push(b);
+    state.contact = { name: name, email: email };
     log(TOPICS[b.topic].label + ' confirmé avec succès');
     save();
-    $('done-text').textContent = TOPICS[b.topic].label + ' · ' + fmtLong(b.date) + ' à ' + b.time.replace(':', ' h ') + '. Le rendez-vous est enregistré dans votre tableau de bord.';
+    $('done-text').textContent = TOPICS[b.topic].label + ' · ' + fmtLong(b.date) + ' à ' + b.time.replace(':', ' h ') + '. Le rendez-vous est enregistré dans « Mes rendez-vous ».';
     $('booking-ui').classList.add('hidden');
     $('booking-done').classList.remove('hidden');
     $('bk-note').value = '';
@@ -294,9 +278,8 @@
     if (t.hasAttribute('data-go')) { e.preventDefault(); go(t.getAttribute('data-go')); }
     else if (t.hasAttribute('data-back')) { back(); }
     else if (t.hasAttribute('data-book')) {
-      var topic = t.getAttribute('data-book');
-      if (isLoggedIn()) openBooking(topic);
-      else { view.pending = { screen: 'booking', topic: topic }; toast('Créez votre compte pour réserver un créneau.'); go('signup'); }
+      e.preventDefault();
+      openBooking(t.getAttribute('data-book'));
     }
     else if (t.hasAttribute('data-cancel')) {
       var id = t.getAttribute('data-cancel');
@@ -309,9 +292,7 @@
     else if (t.hasAttribute('data-time')) { view.time = t.getAttribute('data-time'); renderSlots(); }
   });
 
-  $('cta-start').addEventListener('click', function () {
-    if (isLoggedIn()) openBooking('discovery'); else go('signup');
-  });
+  $('cta-start').addEventListener('click', function () { openBooking('discovery'); });
   $('cal-prev').addEventListener('click', function () { view.month = new Date(view.month.getFullYear(), view.month.getMonth() - 1, 1); renderCalendar(); });
   $('cal-next').addEventListener('click', function () { view.month = new Date(view.month.getFullYear(), view.month.getMonth() + 1, 1); renderCalendar(); });
   $('bk-topic').addEventListener('change', function () {
@@ -322,52 +303,6 @@
   });
   $('book-form').addEventListener('submit', function (e) { e.preventDefault(); confirmBooking(); });
   $('book-another').addEventListener('click', function () { view.topic = 'discovery'; renderBooking(); });
-
-  // Créer un compte
-  $('signup-form').addEventListener('submit', function (e) {
-    e.preventDefault();
-    var name = $('su-name').value.trim(), email = $('su-email').value.trim(), pass = $('su-pass').value;
-    if (!name) return setError('su-error', 'Indiquez votre prénom.');
-    if (!validEmail(email)) return setError('su-error', 'Indiquez une adresse email valide.');
-    if (pass.length < 8) return setError('su-error', 'Le mot de passe doit faire au moins 8 caractères.');
-    setError('su-error');
-    state = { session: true, user: { name: name, email: email, company: '', calendly: '' }, bookings: [], activity: [] };
-    log('Compte créé');
-    save();
-    $('signup-form').reset();
-    toast('Compte créé, bienvenue ' + name + ' !');
-    afterLogin();
-  });
-  $('signup-google').addEventListener('click', function () {
-    state = { session: true, user: { name: 'Camille', email: 'camille.durand@gmail.com', company: '', calendly: '' }, bookings: [], activity: [] };
-    log('Compte créé avec Google');
-    save();
-    toast('Connecté avec Google (simulation)');
-    afterLogin();
-  });
-
-  // Se connecter
-  $('login-form').addEventListener('submit', function (e) {
-    e.preventDefault();
-    var email = $('li-email').value.trim(), pass = $('li-pass').value;
-    if (!validEmail(email) || !pass) return setError('li-error', 'Adresse email ou mot de passe incorrect.');
-    setError('li-error');
-    state.session = true;
-    if (email.toLowerCase() !== (state.user.email || '').toLowerCase()) {
-      var local = email.split('@')[0].split(/[._-]/)[0];
-      state.user.name = local.charAt(0).toUpperCase() + local.slice(1);
-      state.user.email = email;
-    }
-    log('Connexion à l\'espace personnel');
-    save();
-    $('login-form').reset();
-    toast('Connexion réussie');
-    afterLogin();
-  });
-  $('forgot').addEventListener('click', function (e) {
-    e.preventDefault();
-    toast('Simulation : aucun email n\'est envoyé dans cette première version.');
-  });
 
   // Paramètres
   $('profile-form').addEventListener('submit', function (e) {
@@ -383,24 +318,8 @@
     save(); renderNav();
     toast('Modifications enregistrées ✓');
   });
-  $('pass-form').addEventListener('submit', function (e) {
-    e.preventDefault();
-    if (!$('pw-old').value) return setError('pw-error', 'Saisissez votre mot de passe actuel.');
-    if ($('pw-new').value.length < 8) return setError('pw-error', 'Le nouveau mot de passe doit faire au moins 8 caractères.');
-    setError('pw-error');
-    $('pw-old').value = ''; $('pw-new').value = '';
-    log('Mot de passe modifié');
-    save();
-    toast('Mot de passe modifié ✓');
-  });
-  $('logout').addEventListener('click', function () {
-    state.session = false; save();
-    view.history = []; view.pending = null;
-    toast('Vous êtes déconnecté·e');
-    go('home');
-  });
 
   /* ---------- Démarrage ---------- */
   renderOffers();
-  go(isLoggedIn() ? 'dashboard' : 'home', { back: true });
+  go('home', { back: true });
 })();

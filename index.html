@@ -18,16 +18,11 @@
     <a href="#" class="brand" data-go="home" aria-label="Accueil KarimaAI">
       <span class="brand-mark">K</span> KarimaAI
     </a>
-    <nav class="nav" id="nav-out">
-      <a href="#" data-go="home">Accueil</a>
-      <a href="#" data-go="login" class="link-soft">Se connecter</a>
-      <a href="#" data-go="signup" class="btn btn-sm">Commencer</a>
-    </nav>
-    <nav class="nav hidden" id="nav-in">
-      <a href="#" data-go="dashboard" data-nav="dashboard">Tableau de bord</a>
-      <a href="#" data-go="booking" data-nav="booking">Prendre rendez-vous</a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="#" data-go="home" data-nav="home">Accueil</a>
+      <a href="#" data-go="dashboard" data-nav="dashboard">Mes rendez-vous</a>
       <a href="#" data-go="settings" data-nav="settings">Paramètres</a>
-      <span class="avatar" id="nav-avatar" title="Mon profil">K</span>
+      <a href="#" data-book="discovery" class="btn btn-sm">Prendre rendez-vous</a>
     </nav>
   </div>
 </header>
@@ -50,7 +45,6 @@
           <svg viewBox="0 0 24 24" class="ic"><path d="M7 17 17 7M8 7h9v9"/></svg>
         </button>
       </div>
-      <p class="signin muted">Déjà un compte ? <a href="#" data-go="login">Se connecter</a></p>
     </div>
     <div class="hero-visual" aria-hidden="true">
       <div class="float f1"><span class="pill">Agent IA</span><b>Tests auto</b><small>Cas de test générés depuis vos user stories</small></div>
@@ -74,44 +68,47 @@
         <div class="gain"><span class="gain-ic"><svg viewBox="0 0 24 24" class="ic"><path d="M12 3 4 6v6c0 4.5 3.2 7.8 8 9 4.8-1.2 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></span><h3>Une approche fiable</h3><p>6 ans de gestion de produit en agile : l'IA est intégrée avec méthode, pas par effet de mode.</p></div>
     </section>
 
-    <section class="team" aria-labelledby="team-title">
-      <div class="sec-head">
-        <p class="label"><span class="dot"></span>Agents IA</p>
-        <h2 id="team-title">Des agents IA prêts à travailler</h2>
-        <p class="muted">Chaque agent a un métier, un prénom et une tâche précise. Il prépare, vous validez.</p>
-      </div>
-      <div class="team-grid">
-        <article class="agent"><div class="agent-tile"><svg class="agent-art" viewBox="0 0 240 170" role="img" aria-hidden="true"><rect x="72" y="120" width="96" height="110" rx="40" fill="#5B3FD9"/><ellipse cx="120" cy="68" rx="33" ry="32" fill="#2B1B17"/><ellipse cx="120" cy="77" rx="26" ry="29" fill="#F2C9A5"/><rect x="93" y="46" width="54" height="16" rx="8" fill="#2B1B17"/><circle cx="110.5" cy="78.5" r="2.5" fill="#1c1b3a"/><circle cx="128.5" cy="78.5" r="2.5" fill="#1c1b3a"/><rect x="113" y="92" width="14" height="3" rx="1.5" fill="#8a4b3a"/><g transform="translate(176 16)"><circle cx="20" cy="20" r="20" fill="#fff"/><g transform="translate(10 10) scale(.833)" fill="none" stroke="#5b3fd9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></g></g></svg></div><div class="agent-body"><p class="agent-name">Clara</p><h3>Assistante mails IA</h3><p>Trie votre boîte mail et prépare les brouillons de réponse : 12 mails triés ce matin.</p><span class="status">À valider</span></div></article>
-        <article class="agent"><div class="agent-tile"><svg class="agent-art" viewBox="0 0 240 170" role="img" aria-hidden="true"><rect x="72" y="120" width="96" height="110" rx="40" fill="#B9AEF0"/><ellipse cx="120" cy="68" rx="33" ry="32" fill="#1A1A2E"/><ellipse cx="120" cy="77" rx="26" ry="29" fill="#C98F6B"/><rect x="93" y="46" width="54" height="16" rx="8" fill="#1A1A2E"/><circle cx="110.5" cy="78.5" r="2.5" fill="#1c1b3a"/><circle cx="128.5" cy="78.5" r="2.5" fill="#1c1b3a"/><rect x="113" y="92" width="14" height="3" rx="1.5" fill="#8a4b3a"/><g transform="translate(176 16)"><circle cx="20" cy="20" r="20" fill="#fff"/><g transform="translate(10 10) scale(.833)" fill="none" stroke="#5b3fd9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 4 5 5L8 21l-5-5z"/></g></g></svg></div><div class="agent-body"><p class="agent-name">Hugo</p><h3>Créateur de contenu IA</h3><p>Écrit vos posts LinkedIn dans votre ton. Le brouillon est prêt, vous relisez.</p><span class="status">Brouillon</span></div></article>
-        <article class="agent"><div class="agent-tile"><svg class="agent-art" viewBox="0 0 240 170" role="img" aria-hidden="true"><rect x="72" y="120" width="96" height="110" rx="40" fill="#15123A"/><ellipse cx="120" cy="68" rx="33" ry="32" fill="#1A1A2E"/><ellipse cx="120" cy="77" rx="26" ry="29" fill="#8D5A3C"/><rect x="93" y="46" width="54" height="16" rx="8" fill="#1A1A2E"/><circle cx="110.5" cy="78.5" r="2.5" fill="#1c1b3a"/><circle cx="128.5" cy="78.5" r="2.5" fill="#1c1b3a"/><rect x="113" y="92" width="14" height="3" rx="1.5" fill="#8a4b3a"/><g transform="translate(176 16)"><circle cx="20" cy="20" r="20" fill="#fff"/><g transform="translate(10 10) scale(.833)" fill="none" stroke="#5b3fd9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="m9 14 2 2 4-4"/></g></g></svg></div><div class="agent-body"><p class="agent-name">Paul</p><h3>Coordinateur de tâches IA</h3><p>Transforme vos réunions en tâches structurées et assignées : 4 tâches prêtes.</p><span class="status ok">Terminé</span></div></article>
-        <article class="agent"><div class="agent-tile"><svg class="agent-art" viewBox="0 0 240 170" role="img" aria-hidden="true"><rect x="72" y="120" width="96" height="110" rx="40" fill="#7C6AE6"/><ellipse cx="120" cy="68" rx="33" ry="32" fill="#D9A441"/><ellipse cx="120" cy="77" rx="26" ry="29" fill="#E5B48F"/><rect x="93" y="46" width="54" height="16" rx="8" fill="#D9A441"/><circle cx="110.5" cy="78.5" r="2.5" fill="#1c1b3a"/><circle cx="128.5" cy="78.5" r="2.5" fill="#1c1b3a"/><rect x="113" y="92" width="14" height="3" rx="1.5" fill="#8a4b3a"/><g transform="translate(176 16)"><circle cx="20" cy="20" r="20" fill="#fff"/><g transform="translate(10 10) scale(.833)" fill="none" stroke="#5b3fd9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/></g></g></svg></div><div class="agent-body"><p class="agent-name">Théo</p><h3>Testeur IA</h3><p>Génère les cas de test depuis vos user stories et garde la documentation à jour.</p><span class="status">À valider</span></div></article>
-      </div>
-    </section>
+    </div>
 
+  <section class="band-dark" aria-labelledby="team-title">
+    <div class="wrap">
+      <p class="label light"><span class="dot"></span>Agents IA</p>
+      <h2 id="team-title">Des agents IA prêts à travailler pour vous.</h2>
+      <p class="band-lead">Karima Bacari déploie 4 agents IA éprouvés : Clara pour les mails, Nora pour les demandes entrantes, Hugo pour LinkedIn et Paul pour les User Stories. Chaque agent est adapté à vos outils et déployé en 2 à 4 semaines.</p>
+      <div class="agent-grid">
+        <article class="agent-dark"><div class="agent-photo"><svg class="agent-face" viewBox="52 24 136 136" role="img" aria-hidden="true"><rect x="72" y="118" width="96" height="110" rx="40" fill="#6D28D9"/><ellipse cx="120" cy="68" rx="34" ry="33" fill="#2B1B17"/><ellipse cx="120" cy="77" rx="26" ry="29" fill="#F2C9A5"/><rect x="93" y="46" width="54" height="16" rx="8" fill="#2B1B17"/><circle cx="110.5" cy="78.5" r="2.5" fill="#1c1b3a"/><circle cx="128.5" cy="78.5" r="2.5" fill="#1c1b3a"/><rect x="113" y="92" width="14" height="3" rx="1.5" fill="#8a4b3a"/></svg></div><div><h3>Clara</h3><p class="agent-role">Assistante mail</p><ul class="agent-points"><li><svg viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Trie et priorise vos mails</li><li><svg viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Rédige des brouillons de réponse</li><li><svg viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Signale l'urgent</li><li><svg viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>S'adapte à votre ton</li></ul><p class="chips"><span class="chip">Gmail</span><span class="chip">Outlook</span></p><a href="#" class="agent-link" data-book="discovery">Découvrir Clara <span aria-hidden="true">→</span></a></div></article>
+        <article class="agent-dark"><div class="agent-photo"><svg class="agent-face" viewBox="52 24 136 136" role="img" aria-hidden="true"><rect x="72" y="118" width="96" height="110" rx="40" fill="#3730A3"/><ellipse cx="120" cy="68" rx="34" ry="33" fill="#1A1A2E"/><ellipse cx="120" cy="77" rx="26" ry="29" fill="#D9A27E"/><rect x="93" y="46" width="54" height="16" rx="8" fill="#1A1A2E"/><circle cx="110.5" cy="78.5" r="2.5" fill="#1c1b3a"/><circle cx="128.5" cy="78.5" r="2.5" fill="#1c1b3a"/><rect x="113" y="92" width="14" height="3" rx="1.5" fill="#8a4b3a"/></svg></div><div><h3>Nora</h3><p class="agent-role">Gestion des demandes</p><ul class="agent-points"><li><svg viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Classe les demandes entrantes</li><li><svg viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Les route vers la bonne personne</li><li><svg viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Répond aux questions récurrentes</li><li><svg viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Garde une trace de tout</li></ul><p class="chips"><span class="chip">Outlook</span><span class="chip">CRM</span></p><a href="#" class="agent-link" data-book="discovery">Découvrir Nora <span aria-hidden="true">→</span></a></div></article>
+        <article class="agent-dark"><div class="agent-photo"><svg class="agent-face" viewBox="52 24 136 136" role="img" aria-hidden="true"><rect x="72" y="118" width="96" height="110" rx="40" fill="#6D28D9"/><ellipse cx="120" cy="68" rx="34" ry="33" fill="#5A3A22"/><ellipse cx="120" cy="77" rx="26" ry="29" fill="#E5B48F"/><rect x="93" y="46" width="54" height="16" rx="8" fill="#5A3A22"/><circle cx="110.5" cy="78.5" r="2.5" fill="#1c1b3a"/><circle cx="128.5" cy="78.5" r="2.5" fill="#1c1b3a"/><rect x="113" y="92" width="14" height="3" rx="1.5" fill="#8a4b3a"/><g fill="none" stroke="#1c1b3a" stroke-width="2"><circle cx="110.5" cy="78.5" r="8"/><circle cx="129.5" cy="78.5" r="8"/><path d="M118.500 78.500h3"/></g></svg></div><div><h3>Hugo</h3><p class="agent-role">Contenu LinkedIn</p><ul class="agent-points"><li><svg viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Rédige vos posts dans votre ton</li><li><svg viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Propose des accroches</li><li><svg viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Tient votre calendrier éditorial</li><li><svg viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Publie automatiquement</li></ul><p class="chips"><span class="chip">LinkedIn</span><span class="chip">Google Drive</span></p><a href="#" class="agent-link" data-book="discovery">Découvrir Hugo <span aria-hidden="true">→</span></a></div></article>
+        <article class="agent-dark"><div class="agent-photo"><svg class="agent-face" viewBox="52 24 136 136" role="img" aria-hidden="true"><rect x="72" y="118" width="96" height="110" rx="40" fill="#1E3A8A"/><ellipse cx="120" cy="68" rx="34" ry="33" fill="#1A1A2E"/><ellipse cx="120" cy="77" rx="26" ry="29" fill="#E0AC86"/><rect x="93" y="46" width="54" height="16" rx="8" fill="#1A1A2E"/><circle cx="110.5" cy="78.5" r="2.5" fill="#1c1b3a"/><circle cx="128.5" cy="78.5" r="2.5" fill="#1c1b3a"/><rect x="113" y="92" width="14" height="3" rx="1.5" fill="#8a4b3a"/></svg></div><div><h3>Paul</h3><p class="agent-role">Assistant Product</p><ul class="agent-points"><li><svg viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Transforme vos besoins en User Stories</li><li><svg viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Rédige les critères d'acceptation</li><li><svg viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Alimente votre backlog</li><li><svg viewBox="0 0 24 24" class="ic" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Prépare vos cahiers de tests</li></ul><p class="chips"><span class="chip">Jira</span><span class="chip">Azure DevOps</span></p><a href="#" class="agent-link" data-book="discovery">Découvrir Paul <span aria-hidden="true">→</span></a></div></article>
+      </div>
+      <p class="band-foot">Déploiement en 2 à 4 semaines · Maintenance disponible en option.</p>
+    </div>
+  </section>
+
+  <div class="wrap">
     <section class="process" aria-labelledby="process-title">
       <div class="sec-head left">
-        <p class="label"><span class="dot"></span>Comment ça marche</p>
-        <h2 id="process-title">Comment je travaille avec vous</h2>
-        <p class="muted">Trois étapes, du premier échange à l'agent qui tourne chez vous.</p>
+        <p class="label"><span class="dot"></span>Mon approche</p>
+        <h2 id="process-title">Je traite l'IA comme un produit, pas comme un gadget.</h2>
+        <p class="muted">Karima Bacari applique à l'IA les méthodes du pilotage produit : partir d'un besoin réel, prouver la valeur sur un prototype, puis mesurer le gain. Chaque projet avance en 3 temps, sans investissement lourd avant d'avoir validé le résultat.</p>
       </div>
       <ol class="steps-line">
-        <li><h3>Cadrer</h3><p>Un appel gratuit de 30 minutes : nous repérons les tâches où l'IA vous fait gagner le plus de temps.</p></li>
-        <li><h3>Prototyper</h3><p>Un prototype fonctionnel en 7 jours, testé sur vos vrais cas, pour valider avant d'investir.</p></li>
-        <li><h3>Déployer et ajuster</h3><p>L'agent est branché à vos outils. Nous ajustons ensemble jusqu'à ce qu'il travaille comme vous le voulez.</p></li>
+        <li><h3><span class="step-num">01</span>Partir du besoin</h3><p>On identifie d'abord où vous perdez du temps et de l'argent.</p></li>
+        <li><h3><span class="step-num">02</span>Prouver vite</h3><p>Un prototype sur un cas validé avant tout investissement lourd.</p></li>
+        <li><h3><span class="step-num">03</span>Mesurer</h3><p>Chaque livrable a un indicateur : heures gagnées, délais, volumes traités.</p></li>
       </ol>
     </section>
 
     <section class="about" id="about" aria-labelledby="about-title">
-      <figure class="about-photo">
-        <div class="photo-frame" role="img" aria-label="Portrait de Karima Bacari"><span>KB</span></div>
-        <figcaption class="about-note">Le temps gagné, c'est du temps rendu à votre métier.</figcaption>
-      </figure>
+      <div class="about-photo">
+        <div class="photo-ring" role="img" aria-label="Portrait de Karima Bacari"><span>KB</span></div>
+      </div>
       <div class="about-text">
-        <p class="about-kicker">Mon parcours</p>
-        <h2 id="about-title">J'ai appris à livrer des produits. Maintenant, je mets l'IA au travail.</h2>
-        <p>Product Owner depuis plus de six ans, j'ai conduit des projets agiles de développement web et mobile. Ce métier m'a appris à transformer un besoin encore flou en produit livré.</p>
-        <p>Aujourd'hui, j'accompagne des grands groupes et des PME de l'industrie, de l'énergie, de l'assurance et de la banque. Nous choisissons ensemble les tâches où l'IA fait vraiment gagner du temps : tests, documentation, comptes rendus. Puis je livre un prototype qui tourne.</p>
-        <button class="btn btn-lg" data-book="discovery">Réserver un appel de 30 min <span class="arrow-dot"><svg viewBox="0 0 24 24" class="ic"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button>
+        <p class="about-kicker">À propos</p>
+        <h2 id="about-title">Karima Bacari, Product Owner IA</h2>
+        <p>Ingénieure Arts et Métiers et diplômée de Paris Dauphine, je pilote depuis 6 ans des produits digitaux dans des environnements exigeants : réassurance, énergie, industrie, logistique. Aujourd'hui, je mets cette rigueur de grand groupe au service des PME et des indépendants qui veulent tirer un vrai bénéfice de l'IA.</p>
+        <p class="chips-soft"><span class="chip-soft">PSM I</span><span class="chip-soft">PSPO I</span><span class="chip-soft">Français</span><span class="chip-soft">Anglais</span><span class="chip-soft">Espagnol</span></p>
+        <a href="#" class="about-link" data-book="discovery">Découvrir mon parcours <span aria-hidden="true">→</span></a>
       </div>
     </section>
 
@@ -127,59 +124,6 @@
         <p>Appel gratuit, sans engagement, pour cadrer votre besoin.</p>
       </div>
       <button class="btn btn-lg" data-book="discovery">Réserver un appel gratuit</button>
-    </div>
-  </div>
-</section>
-
-<!-- 2. CRÉER UN COMPTE -->
-<section class="screen" data-screen="signup">
-  <div class="auth">
-    <button class="back" data-back>← Retour</button>
-    <div class="card auth-card">
-      <h1>Créer mon compte</h1>
-      <p class="muted">Quelques secondes pour accéder à votre espace.</p>
-      <button class="btn btn-google" id="signup-google" type="button">
-        <svg viewBox="0 0 24 24" class="ic g"><path d="M21 12.2c0-.7-.1-1.3-.2-1.9H12v3.6h5a4.3 4.3 0 0 1-1.9 2.8v2.3h3A9 9 0 0 0 21 12.2z" fill="#4285F4" stroke="none"/><path d="M12 21c2.4 0 4.5-.8 6-2.2l-3-2.3c-.8.5-1.800.8-3 .8a5.300 5.300 0 0 1-5-3.700H3.900v2.400A9 9 0 0 0 12 21z" fill="#34A853" stroke="none"/><path d="M7 13.600a5.400 5.400 0 0 1 0-3.300V7.900H3.900a9 9 0 0 0 0 8.100z" fill="#FBBC05" stroke="none"/><path d="M12 6.600c1.300 0 2.500.5 3.500 1.400l2.600-2.600A9 9 0 0 0 3.900 7.900L7 10.300A5.400 5.400 0 0 1 12 6.600z" fill="#EA4335" stroke="none"/></svg>
-        Continuer avec Google
-      </button>
-      <div class="or"><span>ou</span></div>
-      <form id="signup-form" novalidate>
-        <label>Prénom
-          <input type="text" id="su-name" placeholder="Camille" autocomplete="given-name">
-        </label>
-        <label>Email professionnel
-          <input type="email" id="su-email" placeholder="camille@entreprise.fr" autocomplete="email">
-        </label>
-        <label>Mot de passe
-          <input type="password" id="su-pass" placeholder="8 caractères minimum" autocomplete="new-password">
-        </label>
-        <p class="form-error" id="su-error" role="alert"></p>
-        <button class="btn btn-block" type="submit">Créer mon compte</button>
-      </form>
-      <p class="muted center">Déjà un compte ? <a href="#" data-go="login">Se connecter</a></p>
-    </div>
-  </div>
-</section>
-
-<!-- 3. SE CONNECTER -->
-<section class="screen" data-screen="login">
-  <div class="auth">
-    <button class="back" data-back>← Retour</button>
-    <div class="card auth-card">
-      <h1>Se connecter</h1>
-      <p class="muted">Content de vous revoir.</p>
-      <form id="login-form" novalidate>
-        <label>Email
-          <input type="email" id="li-email" placeholder="camille@entreprise.fr" autocomplete="email">
-        </label>
-        <label>Mot de passe
-          <input type="password" id="li-pass" placeholder="Votre mot de passe" autocomplete="current-password">
-        </label>
-        <p class="form-error" id="li-error" role="alert"></p>
-        <button class="btn btn-block" type="submit">Accéder à mon espace</button>
-      </form>
-      <p class="center"><a href="#" id="forgot">Mot de passe oublié ?</a></p>
-      <p class="muted center">Pas encore de compte ? <a href="#" data-go="signup">Créer un compte</a></p>
     </div>
   </div>
 </section>
@@ -222,7 +166,7 @@
 <section class="screen" data-screen="settings">
   <div class="wrap page narrow">
     <button class="back" data-back>← Retour</button>
-    <div class="page-head"><div><h1>Paramètres</h1><p class="muted">Gérez votre profil et votre accès.</p></div></div>
+    <div class="page-head"><div><h1>Paramètres</h1><p class="muted">Votre profil et votre lien Calendly.</p></div></div>
 
     <form class="card" id="profile-form" novalidate>
       <div class="card-head"><h2>Mon profil</h2></div>
@@ -241,26 +185,6 @@
       <p class="form-error" id="pf-error" role="alert"></p>
       <button class="btn" type="submit">Enregistrer</button>
     </form>
-
-    <form class="card" id="pass-form" novalidate>
-      <div class="card-head"><h2>Mon mot de passe</h2></div>
-      <label>Mot de passe actuel
-        <input type="password" id="pw-old" autocomplete="current-password">
-      </label>
-      <label>Nouveau mot de passe
-        <input type="password" id="pw-new" autocomplete="new-password" placeholder="8 caractères minimum">
-      </label>
-      <p class="form-error" id="pw-error" role="alert"></p>
-      <button class="btn btn-outline" type="submit">Changer le mot de passe</button>
-    </form>
-
-    <div class="card row-card">
-      <div>
-        <h2>Déconnexion</h2>
-        <p class="muted">Fermer la session en cours. Vos données restent enregistrées sur cet ordinateur.</p>
-      </div>
-      <button class="btn btn-outline" id="logout">Me déconnecter</button>
-    </div>
 
     <p class="version">KarimaAI · version 1.0 (première version)</p>
   </div>
